@@ -370,6 +370,9 @@ button{font-size:.86rem!important}
 .sakumeru-link-frame{width:100%;flex:1;border:0;background:#fff}
 @media(max-width:650px){.sakumeru-link-shell{height:calc(100vh - 52px);min-height:520px;border-radius:0}.sakumeru-link-bar .small{display:none}.sakumeru-link-bar{padding:7px}.sakumeru-link-bar button{padding:7px 9px!important}}
 </style>
+<style id="laServiceDashboardV1">
+.la-services{margin-top:16px}.la-services-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}.la-services-head h2{margin-bottom:4px}.la-service-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.la-service-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;min-width:0}.la-service-head,.la-service-foot{display:flex;justify-content:space-between;align-items:center;gap:10px}.la-service-head h3{margin:2px 0 0}.la-service-kicker{font-size:.68rem;letter-spacing:.12em;color:var(--blue)}.la-service-state{font-size:.72rem;padding:4px 8px;border:1px solid var(--line);border-radius:999px}.la-service-state.online{color:#d6ffe2;border-color:var(--green)}.la-service-state.stale{color:#fff1bc;border-color:var(--gold)}.la-service-state.waiting{color:var(--muted)}.la-service-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}.la-service-metrics>div{background:var(--panel2);border:1px solid var(--line);padding:10px;border-radius:9px}.la-service-metrics b,.la-service-metrics span{display:block}.la-service-metrics b{font-size:1.15rem}.la-service-metrics span{font-size:.68rem;color:var(--muted);margin-top:3px}.la-service-next{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;padding:10px;border-left:3px solid var(--gold);background:rgba(215,181,91,.07)}.la-service-next span{font-size:.65rem;color:var(--gold);font-weight:800}.la-service-next small{color:var(--muted)}.la-service-foot{margin-top:12px}.la-service-foot>div{display:flex;gap:6px}.la-service-foot a{text-decoration:none;display:inline-block;font-size:.78rem}.la-service-frame{display:none!important}@media(max-width:850px){.la-service-grid{grid-template-columns:1fr}.la-service-foot{align-items:flex-start;flex-direction:column}.la-service-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
 <style id="laCompactTimerV09746">
 #pomodoroMini.collapsed{width:132px!important;min-width:132px!important;right:8px!important;bottom:8px!important}
 #pomodoroMini.collapsed .eorzea-clock,#pomodoroMini.collapsed .pomo-body,#pomodoroMini.collapsed .et-alarm-details,#pomodoroMini.collapsed .activity-mini{display:none!important}
@@ -464,6 +467,11 @@ button{font-size:.86rem!important}
 <div class="stats" style="margin-top:16px">
 <div class="stat">今日の記録<b id="sToday">0</b></div><div class="stat">未整理<b id="sInbox">0</b></div><div class="stat">FF14<b id="sFF14">0</b></div><div class="stat">TRPG<b id="sTRPG">0</b></div><div class="stat">生活記録<b id="sLife">0</b></div>
 </div>
+<section class="la-services panel" aria-labelledby="laServicesTitle">
+ <div class="la-services-head"><div><h2 id="laServicesTitle">サービス状況</h2><div id="laServiceStatusNote" class="small">接続状態を確認しています。</div></div><button id="laServiceRefresh" class="secondary" type="button">状況を更新</button></div>
+ <div id="laServiceCards" class="la-service-grid" aria-live="polite"></div>
+ <iframe id="hikachokuStatusFrame" class="la-service-frame" title="ヒカチョク状況取得" src="https://sogetuk14.github.io/hikachoku/?la_bridge=1" loading="eager"></iframe>
+</section>
 <div class="grid2" style="margin-top:16px">
 <section class="panel"><h2>すぐ置く</h2><p class="small">ここから入れた内容も、受信箱と同じ場所へ保存されます。</p><textarea id="quickText" placeholder="例：極エデンを3周。豚肉500gと猫砂を買った。"></textarea><div class="wrap" style="margin-top:10px"><button id="quickSave" class="primary" style="flex:1">受信箱へ</button><button id="quickDetailed" class="secondary">詳しく入力</button></div></section>
 <section class="panel"><h2>今日のページ</h2><div id="todayList"></div></section>
@@ -8869,5 +8877,6 @@ function renderHistory(){const b=$a("activityHistory");if(!b)return;const rows=[
 function init(){if($a("activityStart"))$a("activityStart").onclick=start;if($a("activityLap"))$a("activityLap").onclick=lap;if($a("activityPause"))$a("activityPause").onclick=pause;if($a("activityStop"))$a("activityStop").onclick=stop;if($a("activityManualSave"))$a("activityManualSave").onclick=manual;sync();renderHistory();setInterval(sync,500)}
 document.readyState==="loading"?document.addEventListener("DOMContentLoaded",init,{once:true}):init()})();
 </script>
+<script src="assets/la-services.js?v=1"></script>
 </body>
 </html>
